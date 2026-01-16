@@ -13,9 +13,10 @@ on:
       fnnas_base_version:
         description: "Select fnnas base image version"
         required: false
-        default: "rockchip_330"
+        default: "amlogic_338"
         type: choice
         options:
+          - amlogic_338
           - amlogic_322
           - amlogic_300
           - allwinner_317
