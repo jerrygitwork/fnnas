@@ -852,7 +852,7 @@ refactor_rootfs() {
     # Set different types of mount parameters
     fstab_string="defaults,noatime,compress=zstd:6"
     # Update mount settings
-    sed -i "s|^LABEL=ROOTFS.*|UUID=${ROOTFS_UUID}  /      ${rootfs_type}  ${fstab_string}  0 1|g" etc/fstab
+    sed -i "s|^LABEL=ROOTFS.*|UUID=${ROOTFS_UUID}  /  btrfs  ${fstab_string}  0 1|g" etc/fstab
     [[ "${bootfs_type}" == "ext4" ]] && {
         sed -i "s|^LABEL=BOOT.*|UUID=${BOOT_UUID}  /boot  ext4  defaults  0 2|g" etc/fstab
     }
@@ -905,7 +905,7 @@ refactor_rootfs() {
     echo "KERNEL_VERSION='${kernel}'" >>${ophub_release_file}
     echo "KERNEL_BACKUP='yes'" >>${ophub_release_file}
     echo "BOOT_CONF='${BOOT_CONF}'" >>${ophub_release_file}
-    echo "ROOTFS_TYPE='${rootfs_type}'" >>${ophub_release_file}
+    echo "ROOTFS_TYPE='btrfs'" >>${ophub_release_file}
     echo "DISK_TYPE='usb'" >>${ophub_release_file}
     echo "AMPART_STATUS='no'" >>${ophub_release_file}
     echo "MLUBOOT_STATUS='no'" >>${ophub_release_file}
